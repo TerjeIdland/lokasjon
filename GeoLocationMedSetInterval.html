@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="nb">
+    <head>
+        <meta charset="UTF-8">
+        <title>GeoLocation</title>
+    </head>
+    <body>
+        <video id="minFilm" src="SuperChat.mp4" type="video/mp4"></video>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d8447.524054557221!2d7.1392057!3d58.04064135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sno!2sno!4v1499801495842" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+        <script>
+            var minFilm = document.getElementById("minFilm");
+
+            function pan(pos) {
+                var lat =   pos.coords.latitude;
+                var lng = pos.coords.longitude;
+                document.write("Du er her: "+lat+", "+lng);
+                hendelse(lat, lng);
+
+            }
+            function hendelse(lat, lng) {
+                if(lat<58.04024&&lat>58.04020){
+                    document.write("Nå skjedde det noe med lat!");
+                    //minFilm.play();
+                }
+                if(lng<7.15430&&lng>7.15425){
+                    document.write("Nå skjedde det noe med lng!");
+                }
+                else{
+                    //document.write("Nå skjedde det ingenting.");
+                    minFilm.pause();
+                }
+
+            }
+            if(navigator.geolocation) {
+                navigator.geolocation.watchPosition(pan);
+            }
+        </script>
+    </body>
+</html>
